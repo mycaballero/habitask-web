@@ -1,0 +1,10 @@
+@import 'base.css';
+#app {
+  width: 100%;
+}
+@media (min-width: 1024px) {
+  body {
+    display: flex;
+    place-items: center;
+  }
+}
