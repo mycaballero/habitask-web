@@ -16,14 +16,14 @@ const searchValue = ref({
 })
 
 const headers = [
-  {text: 'Nombre', value: "name", width: 140, sortable: true},
-  {text: 'Descripción', value: "description", alias: "description", width: 140, sortable: true},
-  {text: 'Asignado', value: "assigned.name", width: 140, sortable: true},
-  {text: 'correo', value: "assigned.email", width: 140, sortable: true},
-  {text: 'Responsable', value: "owner.name", width: 140, sortable: false},
-  {text: 'Inicio', value: "start_date", alias: "startDate", width: 140, sortable: false},
-  {text: 'Fin', value: "end_date", alias: "endDate", width: 140, sortable: false},
-  {text: 'Completado', value: "completed", width: 140, sortable: false},
+  {text: 'Nombre', value: "name", width: 120, sortable: true},
+  {text: 'Descripción', value: "description", alias: "description", width: 120, sortable: true},
+  {text: 'Asignado', value: "assigned.name", width: 120, sortable: true},
+  {text: 'correo', value: "assigned.email", width: 120, sortable: true},
+  {text: 'Responsable', value: "owner.name", width: 120, sortable: false},
+  {text: 'Inicio', value: "start_date", alias: "startDate", width: 120, sortable: false},
+  {text: 'Fin', value: "end_date", alias: "endDate", width: 120, sortable: false},
+  {text: 'Completado', value: "completed", width: 120, sortable: false},
   {text: "", value: "buttons"},
 ]
 
