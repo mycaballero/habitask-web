@@ -12,7 +12,6 @@ WORKDIR /app
 # Set production environment
 ENV NODE_ENV="production"
 
-
 # Copy the application files into the working directory
 COPY . /app
 
@@ -22,9 +21,6 @@ CMD ["npm", "start"]
 # Install node modules
 COPY --link package-lock.json package.json ./
 RUN npm install --include=dev
-
-# Copy application code
-COPY --link . .
 
 # Build application
 RUN npm run build
