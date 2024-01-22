@@ -6,11 +6,23 @@ export default {
   ],
   darkMode: 'class',
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        red:{
+          '350' : '#F24855'
+        },
+        secondary: {
+          '90': '#000C44',
+        },
+        tertiary: {
+          '90': '#FEF3C7'
+        }
+      }
+    },
   },
   variants: {
     extend: {},
   },
-  plugins: [],
+  plugins: [require('daisyui')],
 }
 

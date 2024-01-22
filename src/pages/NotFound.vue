@@ -1,14 +1,14 @@
 <template>
   <div class="grid place-items-center h-screen">
     <div class="text-center">
-      <h2 class="text-9xl font-bold bg-gradient-to-r from-blue-350 to-cyan-350 bg-clip-text text-transparent animate-gradient">404</h2>
+      <h2 class="text-9xl font-bold bg-gradient-to-r from-secondary-90 to-tertiary-90 bg-clip-text text-transparent animate-gradient">404</h2>
       <p class="mb-10">¿No encunetras lo que buscabas?</p>
       <button @click="router.push({name: 'home'})">intenta de nuevo</button>
     </div>
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import router from "@/router"
 </script>
 
