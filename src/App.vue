@@ -1,7 +1,7 @@
 <script setup>
 import {RouterView, useRouter} from 'vue-router'
 import {shallowRef} from "vue"
-import layouts from '@/layouts'
+import layouts from '@/layouts/Index.js'
 
 const router = useRouter();
 const layout = shallowRef('div');
