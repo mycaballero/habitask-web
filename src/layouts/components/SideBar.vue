@@ -21,8 +21,8 @@
       <nav class="overflow-y-auto max-h-80" :class="isOpen ? 'pl-3' : ''">
         <ul>
           <li v-for="item in list" :key="item.name"
-              :class="`${isOpen? 'px-3' : 'justify-center px-2'} ${item.route === currentRoutePath? 'bg-secondary/90':''}`"
-              class="h-10 group w-full hover:bg-secondary/90 rounded-lg mb-2 flex align-middle">
+              :class="`${isOpen? 'px-3' : 'justify-center px-2'} ${item.route === currentRoutePath? 'bg-tertiary-90/80 ':''}`"
+              class="h-10 group w-full hover:bg-tertiary-90/80 rounded-lg mb-2 flex align-middle">
             <button class="w-full" @click="changeSection(item.route)">
               <span class="text-lg text-white/50 font-medium group-hover:text-white transition-all">
                 <span v-if="isOpen" class="flex align-middel text-white">
@@ -36,11 +36,11 @@
       </nav>
     </div>
     <div class="flex flex-wrap">
-      <div :class="isOpen? 'justify-end mr-2' : 'justify-center'" class="flex w-full mb-2">
+      <div v-if="!phone" :class="isOpen? 'justify-end mr-2' : 'justify-center'" class="flex w-full mb-2">
         <button class="btn px-2.5 text-white" @click="isOpen = !isOpen">
-                    <span>
-                      <Icon :icon="isOpen? 'ic:baseline-menu-open' : 'ic:baseline-menu'" height="25px"/>
-                    </span>
+          <span>
+            <Icon :icon="isOpen? 'ic:baseline-menu-open' : 'ic:baseline-menu'" height="25px"/>
+          </span>
         </button>
       </div>
       <div class="flex flex-nowrap items-stretch w-full bg-gray-600">
@@ -70,7 +70,7 @@
   </section>
 </template>
 <script setup>
-import {computed, inject, onMounted, ref} from 'vue'
+import {computed, inject, onBeforeUnmount, onMounted, ref} from 'vue'
 import {Icon} from '@iconify/vue'
 import {LOGOUT_URL} from '@/constants/urlConstants'
 import {useAuthStore} from "@/stores/auth.store"
@@ -80,6 +80,21 @@ const router = useRouter()
 const authStore = useAuthStore()
 const useFetch = inject('useFetchDefault')
 const list = ref([])
+const phone = ref(false)
+const isOpen = ref(true)
+const user = ref({
+  name: authStore.user?.name,
+})
+const updatePhoneStatus = () => {
+  phone.value = window.innerWidth < 500
+  if (phone.value) {
+    isOpen.value = false
+  }
+}
+
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', updatePhoneStatus)
+})
 
 const userName = computed(() => {
   return authStore.user?.name.length > 22 ? authStore.user?.name.slice(0, 22) : authStore.user?.name;
@@ -103,12 +118,9 @@ const changeSection = async (route) => {
   await router.push({path: route})
 }
 
-const isOpen = ref(true)
-const user = ref({
-  name: authStore.user?.name,
-})
-
 onMounted(async () => {
+  updatePhoneStatus()
+  window.addEventListener('resize', updatePhoneStatus)
   list.value = [
     {
       name: 'Inicio',

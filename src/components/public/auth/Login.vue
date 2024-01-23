@@ -13,7 +13,9 @@ const model = ref({
   email: null,
   password: null
 })
+const disabled = ref(false)
 const login = async () => {
+  disabled.value = true
   try {
     const {response,data} = await useFetch(LOGIN_URL,{
       method: 'POST',
@@ -32,6 +34,7 @@ const login = async () => {
   }catch (error) {
     console.error(error)
   }
+  disabled.value = false
 }
 const loginFacebook = async () => {
   try {
@@ -46,9 +49,9 @@ const loginFacebook = async () => {
 
 <template>
   <div class="w-full flex justify-center">
-    <div class="w-6/12 relative min-h-screen flex flex-col sm:justify-center items-center">
-      <div class="relative sm:max-w-sm w-full">
-        <div class="relative w-full rounded-3xl  px-6 py-4 shadow-md bg-white/30">
+    <div class="w-full sm:w-6/12 relative min-h-screen flex flex-col sm:justify-center items-center">
+      <div class="relative max-w-full sm:max-w-sm w-full">
+        <div v-if="!disabled" class="relative w-full rounded-3xl  px-6 py-4 shadow-md bg-white/30">
           <label for="" class="block mt-3 text-lg text-gray-700 text-center font-semibold">
             Login
           </label>
@@ -70,24 +73,11 @@ const loginFacebook = async () => {
                 Iniciar sesión
               </button>
             </div>
-
-            <div class="flex mt-7 items-center text-center">
-              <hr class="border-gray-300 border-1 w-full rounded-md">
-              <label class="block font-medium text-sm text-gray-600 w-full">
-                Iniciar con
-              </label>
-              <hr class="border-gray-300 border-1 w-full rounded-md">
-            </div>
-            <div class="flex mt-7 justify-center w-full">
-              <BaseButton @click="loginFacebook" class="mr-5 bg-blue-500  px-4 py-2 rounded-xl  text-white shadow-xl
-              hover:shadow-inner " text="Facebook">
-              </BaseButton>
-            </div>
             <div class="mt-7">
               <div class="flex justify-center items-center">
                 <label class="mr-2" >¿No tienes cuenta?</label>
                 <button @click="$router.push({name: 'register'})" class=" text-blue-500 transition duration-500 ease-in-out  transform hover:-translate-x
-                hover:scale-105">
+                hover:scale-105 hover:text-white">
                   Regístrate
                 </button>
               </div>

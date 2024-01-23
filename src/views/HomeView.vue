@@ -9,7 +9,7 @@
             <img class="drop-shadow-lg" :src="'./src/assets/img/png/Haitask-logo.png'">
           </div>
           <div class="flex justify-center">
-            <h2 class="drop-shadow-lg text-secondary-90 font-semibold">Binevenido a la comunidad donde logramos nuestras metas.</h2>
+            <h2 class="drop-shadow-lg text-center text-secondary-90 font-semibold">Bienvenido a la comunidad donde logramos nuestras metas.</h2>
           </div>
         </div>
       </div>
